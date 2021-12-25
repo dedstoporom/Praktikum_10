@@ -2,15 +2,15 @@
 #include "Header.h"
 using namespace std;
 
-template <typename T>
-Deque<T>::Deque()
+
+Deque::Deque()
 {
     head_ = NULL;
     tail_ = NULL;
     size_ = 0;
 }
-template <typename T>
-Deque<T>:: ~Deque()
+
+Deque:: ~Deque()
 {
     while (size_)
         PopFront();
@@ -22,24 +22,23 @@ public:
 }
 
 };
-template <typename T>
-bool Deque<T>::PushFront(const T& data)
+bool Deque::PushFront(const int& data)
 {
-    head_ = new Node<T>(data, head_, NULL);
+    head_ = new Node(data, head_, NULL);
     size_++;
     return true;
 }
-template <typename T>
-bool Deque<T>::PushBack(const T& data)
+
+bool Deque::PushBack(const int& data)
 {
     if (head_ == NULL)
     {
-        head_ = new Node<T>(data);
+        head_ = new Node(data);
         tail_ = head_;
     }
     else
     {
-        tail_->pNext_ = new Node<T>(data, NULL, tail_);
+        tail_->pNext_ = new Node(data, NULL, tail_);
         tail_ = tail_->pNext_;
     }
 
@@ -47,11 +46,11 @@ bool Deque<T>::PushBack(const T& data)
     return true;
 }
 
-template <typename T>
-bool Deque<T>::PopFront()
+
+bool Deque::PopFront()
 {
    if (size_ > 0) {
-        Node<T>* temp = head_;
+        Node* temp = head_;
         head_ = head_->pNext_;
         delete temp;
         size_--;
@@ -62,11 +61,11 @@ bool Deque<T>::PopFront()
         
 }
 
-template <typename T>
-bool Deque<T>::PopBack()
+
+bool Deque::PopBack()
 {
     if (size_ > 0) {
-        Node<T>* temp = tail_;
+        Node* temp = tail_;
         tail_ = tail_->pPrev_;
         delete temp;
 
@@ -78,10 +77,11 @@ bool Deque<T>::PopBack()
 int main() {
     int action = 0;
     int count;
-    Deque<int> dec;
+    Deque dec;
     cout << "Push Back[1]" << endl;
     cout << "Push Front[2]" << endl;
     cout << "PopFront [5]" << endl;
+    cout << "PopBack [6]" << endl;
     cout << "Size [3]" << endl;
     cout << "Exit [4]" << endl;
     while (action != 4) {
